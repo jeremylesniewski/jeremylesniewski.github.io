@@ -14,11 +14,11 @@ const works = [
     tracks: ['Intro', 'Wrastam', 'Mam Dość', 'Co Chcesz? (Daj Mi Spokój)', 'Tak Smutnego', 'W Szare Dni', 'Elka', 'Blask Gwiazd (L.A)', 'Outro'],
     description:
       "Full-length CD master for Shoshana — a grunge/alternative band from Szczecin. Tracked, edited and mixed. The Polish-language record is the band's most complete and fully produced statement.",
-    link: 'https://voiaudio.bandcamp.com',
-    art: 'https://f4.bcbits.com/img/0040158559_23.jpg',
-    accentColor: '#7a4e28',
-    labelColor: '#c8966a',
-    bgFallback: '#110900',
+    link: 'https://voiaudio.bandcamp.com/album/w-szarym-mie-cie-cd-master',
+    art: 'https://f4.bcbits.com/img/a4244274974_10.jpg',
+    accent: '#7a4e28',
+    pill: '#c8966a',
+    bg: '#110900',
   },
   {
     id: 2,
@@ -28,83 +28,73 @@ const works = [
     role: 'Recording Engineer / Mix',
     year: '2023',
     type: 'Live EP',
-    tracks: ['Hug Me Away', 'Bloody Eyes'],
+    tracks: ['',''],
     description:
       'Live session EP capturing Shoshana raw in the rehearsal room. Tracked live with minimal overdubs — energy is the point. ~17k Spotify streams.',
-    link: 'https://voiaudio.bandcamp.com',
-    art: null,
-    accentColor: '#2a4a2a',
-    labelColor: '#6aaa6a',
-    bgFallback: '#060e06',
+    link: 'https://voiaudio.bandcamp.com/album/live-at-the-basement',
+    art: 'https://f4.bcbits.com/img/a1092665623_10.jpg',
+    accent: '#2a4a2a',
+    pill: '#6aaa6a',
+    bg: '#060e06',
   },
   {
     id: 3,
     artist: 'SOUGORSHEE',
     title: 'Eclectic Delusion',
     subtitle: 'EP',
-    role: 'Songwriter / Engineer / Multi-instrumentalist',
+    role: 'Songwriter · Engineer · Multi-instrumentalist',
     year: '2024',
     type: 'EP · 4 tracks',
     tracks: ['Kitty Be (Instrumental)', 'Information', 'Nigdy Nie Walczyłem', '68th Jam'],
     description:
       'Debut SOUGORSHEE release. Recorded in a cramped dim basement in 2022 — out of thousands of hours of jams, four tracks made the cut. Alternative / psychedelic basement aesthetic.',
-    link: 'https://sougorshee.bandcamp.com/album/eclectic-delusion-ep',
-    art: 'https://f4.bcbits.com/img/a3374648314_5.jpg',
-    accentColor: '#3a2a5a',
-    labelColor: '#9a80cc',
-    bgFallback: '#07040f',
+    link: 'https://voiaudio.bandcamp.com/album/eclectic-delusion-ep',
+    art: 'https://f4.bcbits.com/img/a4258876001_10.jpg',
+    accent: '#3a2a5a',
+    pill: '#9a80cc',
+    bg: '#07040f',
   },
   {
     id: 4,
     artist: 'SOUGORSHEE',
     title: 'Dog Heading Back Home',
     subtitle: '(2023 Sessions)',
-    role: 'Songwriter / Engineer / Multi-instrumentalist',
+    role: 'Songwriter · Engineer · Multi-instrumentalist',
     year: '2023',
     type: 'Sessions',
     tracks: ['2023 basement recordings'],
     description:
-      'Second SOUGORSHEE release — 2023 basement sessions. Same raw philosophy: capture what\'s happening in the room, pick the best moments.',
-    link: 'https://voiaudio.bandcamp.com',
-    art: null,
-    accentColor: '#4a2a18',
-    labelColor: '#b07848',
-    bgFallback: '#0c0604',
+      "Second SOUGORSHEE release — 2023 basement sessions. Same raw philosophy: capture what's happening in the room, pick the best moments.",
+    link: 'https://voiaudio.bandcamp.com/album/dog-heading-back-home-2023-sessions',
+    art: 'https://f4.bcbits.com/img/a4060017996_10.jpg',
+    accent: '#4a2a18',
+    pill: '#b07848',
+    bg: '#0c0604',
   },
 ];
 
-function AlbumCover({
-  work,
-  width = 270,
-  height = 270,
-}: {
-  work: (typeof works)[0];
-  width?: number;
-  height?: number;
-}) {
+function AlbumCover({ work, size }: { work: (typeof works)[0]; size: number }) {
   const [imgError, setImgError] = useState(false);
 
   if (work.art && !imgError) {
     return (
-      <div style={{ width, height, overflow: 'hidden', flexShrink: 0, position: 'relative' }}>
+      <div style={{ width: size, height: size, overflow: 'hidden', flexShrink: 0 }}>
         <img
           src={work.art}
           alt={`${work.artist} — ${work.title}`}
           onError={() => setImgError(true)}
           style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-          crossOrigin="anonymous"
         />
       </div>
     );
   }
 
-  // Generated fallback cover
   return (
     <div
       style={{
-        width,
-        height,
-        background: work.bgFallback,
+        width: size,
+        height: size,
+        background: work.bg,
         flexShrink: 0,
         position: 'relative',
         overflow: 'hidden',
@@ -114,88 +104,35 @@ function AlbumCover({
         justifyContent: 'center',
       }}
     >
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          backgroundImage: `radial-gradient(ellipse at 38% 28%, ${work.accentColor}cc 0%, transparent 60%)`,
-        }}
-      />
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          backgroundImage:
-            'repeating-linear-gradient(0deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 18px)',
-        }}
-      />
-      <div style={{ position: 'relative', textAlign: 'center', padding: '0 18px' }}>
-        <div
-          style={{
-            fontFamily: "'Courier New', monospace",
-            fontSize: Math.max(9, width * 0.033),
-            color: work.labelColor,
-            letterSpacing: '0.22em',
-            textTransform: 'uppercase',
-            marginBottom: 10,
-            opacity: 0.65,
-          }}
+      <div style={{ position: 'absolute', inset: 0, backgroundImage: `radial-gradient(ellipse at 38% 28%, ${work.accent}cc 0%, transparent 60%)` }} />
+      <div style={{ position: 'relative', textAlign: 'center', padding: '0 16px' }}>
+        <p
+          className="font-mono uppercase"
+          style={{ fontSize: Math.max(8, size * 0.032), color: work.pill, letterSpacing: '0.2em', marginBottom: 8, opacity: 0.65 }}
         >
           {work.artist}
-        </div>
-        <div
-          style={{
-            fontFamily: 'Georgia, serif',
-            fontStyle: 'italic',
-            fontSize: Math.max(11, width * 0.055),
-            color: 'rgba(255,255,255,0.85)',
-            lineHeight: 1.25,
-          }}
+        </p>
+        <p
+          className="font-sans"
+          style={{ fontSize: Math.max(11, size * 0.054), color: 'rgba(255,255,255,0.85)', fontWeight: 300, lineHeight: 1.25 }}
         >
           {work.title}
-        </div>
+        </p>
         {work.subtitle && (
-          <div
-            style={{
-              fontFamily: "'Courier New', monospace",
-              fontStyle: 'normal',
-              fontSize: Math.max(8, width * 0.028),
-              color: 'rgba(255,255,255,0.3)',
-              marginTop: 7,
-              letterSpacing: '0.1em',
-            }}
+          <p
+            className="font-mono"
+            style={{ fontSize: Math.max(8, size * 0.028), color: 'rgba(255,255,255,0.28)', marginTop: 6, letterSpacing: '0.08em' }}
           >
             {work.subtitle}
-          </div>
+          </p>
         )}
       </div>
-      <div
-        style={{
-          position: 'absolute',
-          bottom: 11,
-          right: 13,
-          fontFamily: "'Courier New', monospace",
-          fontSize: Math.max(7, width * 0.028),
-          color: 'rgba(255,255,255,0.18)',
-          letterSpacing: '0.1em',
-        }}
+      <p
+        className="font-mono"
+        style={{ position: 'absolute', bottom: 10, right: 12, fontSize: Math.max(7, size * 0.027), color: 'rgba(255,255,255,0.16)', letterSpacing: '0.1em' }}
       >
         {work.year}
-      </div>
-      <div
-        style={{
-          position: 'absolute',
-          bottom: 11,
-          left: 13,
-          fontFamily: "'Courier New', monospace",
-          fontSize: Math.max(7, width * 0.025),
-          color: 'rgba(255,255,255,0.12)',
-          letterSpacing: '0.08em',
-          textTransform: 'uppercase',
-        }}
-      >
-        {work.type}
-      </div>
+      </p>
     </div>
   );
 }
@@ -208,132 +145,66 @@ export default function SelectedWork() {
   const dragDelta = useRef(0);
   const total = works.length;
 
-  const prev = useCallback(() => {
-    setSelectedId(null);
-    setActiveIndex((i) => (i - 1 + total) % total);
-  }, [total]);
+  const prev = useCallback(() => { setSelectedId(null); setActiveIndex((i) => (i - 1 + total) % total); }, [total]);
+  const next = useCallback(() => { setSelectedId(null); setActiveIndex((i) => (i + 1) % total); }, [total]);
 
-  const next = useCallback(() => {
-    setSelectedId(null);
-    setActiveIndex((i) => (i + 1) % total);
-  }, [total]);
+  const onMouseDown = (e: React.MouseEvent) => { setIsDragging(false); dragStartX.current = e.clientX; dragDelta.current = 0; };
+  const onMouseMove = (e: React.MouseEvent) => { dragDelta.current = e.clientX - dragStartX.current; if (Math.abs(dragDelta.current) > 8) setIsDragging(true); };
+  const onMouseUp = () => { if (Math.abs(dragDelta.current) > 60) { dragDelta.current < 0 ? next() : prev(); } setTimeout(() => setIsDragging(false), 0); };
+  const onTouchStart = (e: React.TouchEvent) => { dragStartX.current = e.touches[0].clientX; };
+  const onTouchEnd = (e: React.TouchEvent) => { const d = e.changedTouches[0].clientX - dragStartX.current; if (Math.abs(d) > 60) { d < 0 ? next() : prev(); } };
 
-  const handleMouseDown = (e: React.MouseEvent) => {
-    setIsDragging(false);
-    dragStartX.current = e.clientX;
-    dragDelta.current = 0;
-  };
-  const handleMouseMove = (e: React.MouseEvent) => {
-    dragDelta.current = e.clientX - dragStartX.current;
-    if (Math.abs(dragDelta.current) > 8) setIsDragging(true);
-  };
-  const handleMouseUp = () => {
-    if (Math.abs(dragDelta.current) > 60) {
-      dragDelta.current < 0 ? next() : prev();
-    }
-    setTimeout(() => setIsDragging(false), 0);
-  };
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    dragStartX.current = e.touches[0].clientX;
-  };
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    const delta = e.changedTouches[0].clientX - dragStartX.current;
-    if (Math.abs(delta) > 60) {
-      delta < 0 ? next() : prev();
-    }
-  };
-
-  const getSlotProps = (index: number) => {
+  const slot = (index: number) => {
     const offset = ((index - activeIndex) % total + total) % total;
     const pos = offset <= total / 2 ? offset : offset - total;
-    const absPos = Math.abs(pos);
-    const scale = absPos === 0 ? 1 : absPos === 1 ? 0.71 : 0.48;
-    const opacity = absPos === 0 ? 1 : absPos === 1 ? 0.5 : absPos === 2 ? 0.18 : 0;
-    const zIndex = absPos === 0 ? 10 : absPos === 1 ? 5 : 1;
-    const x = pos * 280;
-    return { x, scale, opacity, zIndex };
+    const abs = Math.abs(pos);
+    return {
+      x: pos * 290,
+      scale: abs === 0 ? 1 : abs === 1 ? 0.7 : 0.48,
+      opacity: abs === 0 ? 1 : abs === 1 ? 0.45 : abs === 2 ? 0.15 : 0,
+      zIndex: abs === 0 ? 10 : abs === 1 ? 5 : 1,
+    };
   };
 
-  const selectedWork = works.find((w) => w.id === selectedId);
-  const centreWork = works[activeIndex];
+  const active = works[activeIndex];
+  const selected = works.find((w) => w.id === selectedId);
 
   return (
-    <section
-      id="work"
-      className="section-padding border-t border-neutral-800"
-      style={{ background: '#070707', minHeight: '100vh', position: 'relative', overflow: 'hidden' }}
-    >
-      <div className="container-max" style={{ position: 'relative' }}>
+    <section id="work" className="section-padding border-t border-neutral-800">
+      <div className="container-max">
+
         {/* header */}
         <motion.div
-          className="mb-12"
+          className="mb-16 md:mb-24"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.6 }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-            <div style={{ width: 16, height: 1, background: '#363636' }} />
-            <p
-              style={{
-                fontFamily: "'Courier New', monospace",
-                fontSize: 10,
-                color: '#3a3a3a',
-                letterSpacing: '0.2em',
-                textTransform: 'uppercase',
-                margin: 0,
-              }}
-            >
-              Work
-            </p>
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-4 h-px bg-neutral-500" />
+            <p className="text-xs font-mono text-neutral-500 uppercase tracking-wider">Work</p>
           </div>
-          <h2
-            style={{
-              fontSize: 'clamp(1.8rem, 4vw, 3rem)',
-              fontWeight: 300,
-              color: '#d8d8d8',
-              letterSpacing: '-0.02em',
-              margin: 0,
-              fontFamily: 'Georgia, serif',
-              fontStyle: 'italic',
-            }}
-          >
+          <h2 className="text-4xl md:text-5xl font-sans text-white" style={{ fontWeight: 300, letterSpacing: '-0.02em' }}>
             Releases
           </h2>
-          <p
-            style={{
-              marginTop: 8,
-              color: '#383838',
-              fontFamily: "'Courier New', monospace",
-              fontSize: 10,
-              letterSpacing: '0.08em',
-            }}
-          >
+          <p className="font-mono text-xs text-neutral-600 mt-4" style={{ letterSpacing: '0.06em' }}>
             drag · click to open
           </p>
         </motion.div>
 
         {/* carousel */}
         <div
-          style={{
-            position: 'relative',
-            height: 370,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: isDragging ? 'grabbing' : 'grab',
-            userSelect: 'none',
-          }}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseUp}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
+          style={{ position: 'relative', height: 360, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: isDragging ? 'grabbing' : 'grab', userSelect: 'none' }}
+          onMouseDown={onMouseDown}
+          onMouseMove={onMouseMove}
+          onMouseUp={onMouseUp}
+          onMouseLeave={onMouseUp}
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
         >
           {works.map((work, index) => {
-            const { x, scale, opacity, zIndex } = getSlotProps(index);
+            const { x, scale, opacity, zIndex } = slot(index);
             const isCentre = index === activeIndex;
             return (
               <motion.div
@@ -343,70 +214,26 @@ export default function SelectedWork() {
                 style={{ position: 'absolute', zIndex, cursor: isCentre ? 'pointer' : 'default' }}
                 onClick={() => {
                   if (isDragging) return;
-                  if (!isCentre) {
-                    setSelectedId(null);
-                    setActiveIndex(index);
-                    return;
-                  }
+                  if (!isCentre) { setSelectedId(null); setActiveIndex(index); return; }
                   setSelectedId(work.id === selectedId ? null : work.id);
                 }}
                 whileHover={isCentre ? { scale: scale * 1.03 } : {}}
               >
                 <div style={{ position: 'relative' }}>
-                  <AlbumCover work={work} width={270} height={270} />
-                  {/* glow */}
+                  <AlbumCover work={work} size={270} />
                   {isCentre && (
-                    <div
-                      style={{
-                        position: 'absolute',
-                        bottom: -16,
-                        left: '15%',
-                        right: '15%',
-                        height: 36,
-                        background: work.accentColor,
-                        filter: 'blur(22px)',
-                        opacity: 0.28,
-                        borderRadius: '50%',
-                        zIndex: -1,
-                      }}
-                    />
+                    <div style={{ position: 'absolute', bottom: -14, left: '15%', right: '15%', height: 32, background: work.accent, filter: 'blur(20px)', opacity: 0.3, borderRadius: '50%', zIndex: -1 }} />
                   )}
                 </div>
-
                 {isCentre && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    style={{ textAlign: 'center', marginTop: 20 }}
-                  >
-                    <p
-                      style={{
-                        fontFamily: "'Courier New', monospace",
-                        fontSize: 9,
-                        color: work.labelColor,
-                        margin: 0,
-                        letterSpacing: '0.2em',
-                        textTransform: 'uppercase',
-                        opacity: 0.7,
-                      }}
-                    >
+                  <motion.div initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} style={{ textAlign: 'center', marginTop: 18 }}>
+                    <p className="font-mono uppercase text-xs" style={{ color: work.pill, letterSpacing: '0.18em', opacity: 0.7, marginBottom: 4 }}>
                       {work.artist}
                     </p>
-                    <p
-                      style={{
-                        fontFamily: 'Georgia, serif',
-                        fontStyle: 'italic',
-                        color: '#c0c0c0',
-                        fontSize: 15,
-                        margin: '5px 0 0',
-                        letterSpacing: '-0.01em',
-                      }}
-                    >
+                    <p className="font-sans text-neutral-300" style={{ fontWeight: 300, fontSize: 15, letterSpacing: '-0.01em' }}>
                       {work.title}
                       {work.subtitle && (
-                        <span style={{ color: '#484848', fontSize: 11, marginLeft: 6, fontStyle: 'normal', fontFamily: "'Courier New', monospace" }}>
-                          {work.subtitle}
-                        </span>
+                        <span className="font-mono text-neutral-600" style={{ fontSize: 11, marginLeft: 6 }}>{work.subtitle}</span>
                       )}
                     </p>
                   </motion.div>
@@ -416,30 +243,28 @@ export default function SelectedWork() {
           })}
         </div>
 
-        {/* navigation */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 18, marginTop: 60 }}>
+        {/* nav */}
+        <div className="flex items-center justify-center gap-4 mt-16">
           <button
             onClick={prev}
-            onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#484848'; e.currentTarget.style.color = '#888'; }}
-            onMouseLeave={(e) => { e.currentTarget.style.borderColor = '#222'; e.currentTarget.style.color = '#3a3a3a'; }}
-            style={{ background: 'none', border: '1px solid #222', color: '#3a3a3a', width: 32, height: 32, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: 17, transition: 'all 0.2s', fontFamily: 'Georgia, serif', lineHeight: 1 }}
+            className="font-sans text-neutral-600 border border-neutral-800 hover:border-neutral-500 hover:text-neutral-300 transition-colors"
+            style={{ width: 32, height: 32, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, background: 'none', lineHeight: 1 }}
           >
             ‹
           </button>
-          <div style={{ display: 'flex', gap: 9, alignItems: 'center' }}>
-            {works.map((w, i) => (
+          <div className="flex items-center gap-2">
+            {works.map((_, i) => (
               <button
                 key={i}
                 onClick={() => { setSelectedId(null); setActiveIndex(i); }}
-                style={{ width: i === activeIndex ? 26 : 5, height: 5, borderRadius: 3, border: 'none', background: i === activeIndex ? centreWork.labelColor : '#222', cursor: 'pointer', transition: 'all 0.35s ease', padding: 0 }}
+                style={{ width: i === activeIndex ? 24 : 5, height: 5, borderRadius: 3, border: 'none', background: i === activeIndex ? active.pill : '#262626', cursor: 'pointer', transition: 'all 0.35s ease', padding: 0 }}
               />
             ))}
           </div>
           <button
             onClick={next}
-            onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#484848'; e.currentTarget.style.color = '#888'; }}
-            onMouseLeave={(e) => { e.currentTarget.style.borderColor = '#222'; e.currentTarget.style.color = '#3a3a3a'; }}
-            style={{ background: 'none', border: '1px solid #222', color: '#3a3a3a', width: 32, height: 32, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: 17, transition: 'all 0.2s', fontFamily: 'Georgia, serif', lineHeight: 1 }}
+            className="font-sans text-neutral-600 border border-neutral-800 hover:border-neutral-500 hover:text-neutral-300 transition-colors"
+            style={{ width: 32, height: 32, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, background: 'none', lineHeight: 1 }}
           >
             ›
           </button>
@@ -447,108 +272,98 @@ export default function SelectedWork() {
 
         {/* detail panel */}
         <AnimatePresence>
-          {selectedWork && (
+          {selected && (
             <motion.div
-              key={selectedWork.id}
-              initial={{ opacity: 0, y: 28 }}
+              key={selected.id}
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 14 }}
+              exit={{ opacity: 0, y: 12 }}
               transition={{ duration: 0.38, ease: [0.33, 0.66, 0.66, 1] }}
-              style={{ marginTop: 48, position: 'relative', border: `1px solid ${selectedWork.accentColor}55`, overflow: 'hidden' }}
+              style={{ marginTop: 48, position: 'relative', border: `1px solid ${selected.accent}55`, overflow: 'hidden' }}
             >
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: `linear-gradient(90deg, transparent, ${selectedWork.labelColor}55, transparent)` }} />
-              <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(140deg, ${selectedWork.accentColor}14 0%, transparent 50%)`, pointerEvents: 'none' }} />
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: `linear-gradient(90deg, transparent, ${selected.pill}44, transparent)` }} />
+              <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(140deg, ${selected.accent}12 0%, transparent 50%)`, pointerEvents: 'none' }} />
 
               <div
                 style={{
-                  padding: 'clamp(22px, 4vw, 40px)',
+                  padding: 'clamp(20px, 4vw, 40px)',
                   display: 'grid',
                   gridTemplateColumns: 'auto 1fr',
-                  gap: 'clamp(18px, 3vw, 36px)',
+                  gap: 'clamp(16px, 3vw, 36px)',
                   alignItems: 'start',
                   position: 'relative',
                 }}
               >
-                {/* small cover */}
-                <AlbumCover work={selectedWork} width={100} height={100} />
+                <AlbumCover work={selected} size={96} />
 
-                {/* content */}
                 <div>
-                  <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 8, marginBottom: 14 }}>
-                    <span style={{ fontFamily: "'Courier New', monospace", fontSize: 9, color: selectedWork.labelColor, letterSpacing: '0.2em', textTransform: 'uppercase', border: `1px solid ${selectedWork.accentColor}77`, padding: '2px 7px' }}>
-                      {selectedWork.type}
+                  {/* meta row */}
+                  <div className="flex items-center gap-3 flex-wrap mb-4">
+                    <span
+                      className="font-mono uppercase"
+                      style={{ fontSize: 9, color: selected.pill, letterSpacing: '0.2em', border: `1px solid ${selected.accent}77`, padding: '2px 7px' }}
+                    >
+                      {selected.type}
                     </span>
-                    <span style={{ fontFamily: "'Courier New', monospace", fontSize: 9, color: '#383838', letterSpacing: '0.1em' }}>
-                      {selectedWork.year}
-                    </span>
+                    <span className="font-mono text-neutral-700" style={{ fontSize: 9, letterSpacing: '0.1em' }}>{selected.year}</span>
                   </div>
 
-                  <p style={{ fontFamily: "'Courier New', monospace", fontSize: 9, color: selectedWork.labelColor, letterSpacing: '0.18em', textTransform: 'uppercase', margin: '0 0 4px', opacity: 0.65 }}>
-                    {selectedWork.artist}
+                  <p className="font-mono uppercase" style={{ fontSize: 9, color: selected.pill, letterSpacing: '0.18em', opacity: 0.65, marginBottom: 4 }}>
+                    {selected.artist}
                   </p>
-                  <h3
-                    style={{
-                      fontFamily: 'Georgia, serif',
-                      fontStyle: 'italic',
-                      fontSize: 'clamp(1.2rem, 2.5vw, 1.9rem)',
-                      fontWeight: 400,
-                      color: '#ddd',
-                      letterSpacing: '-0.02em',
-                      margin: '0 0 4px',
-                    }}
-                  >
-                    {selectedWork.title}
+                  <h3 className="font-sans text-white" style={{ fontWeight: 300, fontSize: 'clamp(1.2rem, 2.5vw, 1.8rem)', letterSpacing: '-0.02em', marginBottom: 4 }}>
+                    {selected.title}
+                    {selected.subtitle && (
+                      <span className="font-mono text-neutral-700" style={{ fontSize: '0.4em', marginLeft: 10, letterSpacing: '0.06em', fontWeight: 400 }}>
+                        {selected.subtitle}
+                      </span>
+                    )}
                   </h3>
-                  {selectedWork.subtitle && (
-                    <p style={{ fontFamily: "'Courier New', monospace", fontSize: 10, color: '#404040', margin: '0 0 14px', letterSpacing: '0.06em' }}>
-                      {selectedWork.subtitle}
-                    </p>
-                  )}
-
-                  <p style={{ fontFamily: "'Courier New', monospace", fontSize: 9, color: '#383838', margin: '0 0 14px', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-                    {selectedWork.role}
+                  <p className="font-mono text-neutral-700 uppercase mb-4" style={{ fontSize: 9, letterSpacing: '0.1em' }}>
+                    {selected.role}
                   </p>
 
-                  <p style={{ fontSize: 13, color: '#686868', lineHeight: 1.8, maxWidth: 500, margin: '0 0 18px', fontFamily: 'Georgia, serif' }}>
-                    {selectedWork.description}
+                  <p className="font-sans text-neutral-500 mb-6" style={{ fontSize: 14, lineHeight: 1.75, maxWidth: 500 }}>
+                    {selected.description}
                   </p>
 
                   {/* tracklist */}
-                  <div style={{ marginBottom: 20 }}>
-                    <p style={{ fontFamily: "'Courier New', monospace", fontSize: 8, color: '#2e2e2e', letterSpacing: '0.18em', textTransform: 'uppercase', margin: '0 0 7px' }}>
-                      Tracklist
-                    </p>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-                      {selectedWork.tracks.map((t, i) => (
-                        <div key={i} style={{ display: 'flex', alignItems: 'baseline', gap: 10 }}>
-                          <span style={{ fontFamily: "'Courier New', monospace", fontSize: 9, color: '#2c2c2c', minWidth: 20 }}>
-                            {String(i + 1).padStart(2, '0')}.
-                          </span>
-                          <span style={{ fontFamily: "'Courier New', monospace", fontSize: 11, color: '#505050' }}>
-                            {t}
-                          </span>
+                  <div className="mb-6">
+                    <p className="font-mono text-neutral-700 uppercase mb-2" style={{ fontSize: 8, letterSpacing: '0.18em' }}>Tracklist</p>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                      {selected.tracks.map((t, i) => (
+                        <div key={i} className="flex gap-3">
+                          <span className="font-mono text-neutral-700" style={{ fontSize: 10, minWidth: 20 }}>{String(i + 1).padStart(2, '0')}.</span>
+                          <span className="font-mono text-neutral-500" style={{ fontSize: 11 }}>{t}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
                   {/* actions */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap' }}>
+                  <div className="flex items-center gap-4 flex-wrap">
                     <a
-                      href={selectedWork.link}
+                      href={selected.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      onMouseEnter={(e) => { e.currentTarget.style.background = `${selectedWork.accentColor}33`; }}
+                      className="font-mono uppercase transition-colors"
+                      style={{
+                        fontSize: 9,
+                        color: selected.pill,
+                        letterSpacing: '0.15em',
+                        border: `1px solid ${selected.accent}77`,
+                        padding: '6px 12px',
+                        display: 'inline-block',
+                      }}
+                      onMouseEnter={(e) => { e.currentTarget.style.background = `${selected.accent}33`; }}
                       onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
-                      style={{ fontFamily: "'Courier New', monospace", fontSize: 9, color: selectedWork.labelColor, letterSpacing: '0.15em', textTransform: 'uppercase', textDecoration: 'none', border: `1px solid ${selectedWork.accentColor}77`, padding: '6px 12px', transition: 'background 0.2s', display: 'inline-block' }}
                     >
                       Listen on Bandcamp ↗
                     </a>
                     <button
                       onClick={() => setSelectedId(null)}
-                      onMouseEnter={(e) => { e.currentTarget.style.color = '#555'; }}
-                      onMouseLeave={(e) => { e.currentTarget.style.color = '#2c2c2c'; }}
-                      style={{ fontFamily: "'Courier New', monospace", fontSize: 9, color: '#2c2c2c', background: 'none', border: 'none', cursor: 'pointer', letterSpacing: '0.15em', textTransform: 'uppercase', padding: 0, transition: 'color 0.2s' }}
+                      className="font-mono uppercase text-neutral-700 hover:text-neutral-400 transition-colors"
+                      style={{ fontSize: 9, background: 'none', border: 'none', letterSpacing: '0.15em', padding: 0, cursor: 'pointer' }}
                     >
                       close ×
                     </button>
@@ -558,6 +373,7 @@ export default function SelectedWork() {
             </motion.div>
           )}
         </AnimatePresence>
+
       </div>
     </section>
   );
