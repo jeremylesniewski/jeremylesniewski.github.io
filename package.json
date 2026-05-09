@@ -1,0 +1,28 @@
+{
+  "name": "jeremylesniewski.github.io",
+  "version": "1.0.0",
+  "description": "Jeremy Lesniewski - music production, recording, custom projects, and sound design in Berlin",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && npm run sync:pages",
+    "sync:pages": "rm -rf assets/_next && mkdir -p assets privacy impressum 404 && cp -R out/_next assets/ && cp out/index.html out/index.txt out/404.html . && cp out/privacy/index.html out/privacy/index.txt privacy/ && cp out/impressum/index.html out/impressum/index.txt impressum/ && cp out/404/index.html 404/",
+    "start": "next start",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "next": "^15.0.0",
+    "framer-motion": "^11.0.0",
+    "tailwindcss": "^3.4.0",
+    "postcss": "^8.4.0",
+    "autoprefixer": "^10.4.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0"
+  }
+}
