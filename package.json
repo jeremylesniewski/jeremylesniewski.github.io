@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && npm run sync:pages",
-    "sync:pages": "rm -rf assets/_next && mkdir -p assets privacy impressum 404 && cp -R out/_next assets/ && cp out/index.html out/index.txt out/404.html . && cp out/privacy/index.html out/privacy/index.txt privacy/ && cp out/impressum/index.html out/impressum/index.txt impressum/ && cp out/404/index.html 404/",
+    "sync:pages": "rm -rf assets/_next audio && mkdir -p assets privacy impressum 404 && cp -R out/_next assets/ && cp -R out/audio . && cp out/index.html out/index.txt out/404.html . && cp out/privacy/index.html out/privacy/index.txt privacy/ && cp out/impressum/index.html out/impressum/index.txt impressum/ && cp out/404/index.html 404/",
     "start": "next start",
     "lint": "tsc --noEmit"
   },

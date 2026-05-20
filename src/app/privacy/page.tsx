@@ -62,7 +62,7 @@ export default function PrivacyPage() {
               </p>
               <p className="text-neutral-400 mt-4">
                 <a href="mailto:jeremy@neecratch.com" className="hover:text-white">
-                  jeremy@neecratch.com
+                  jeremylesniewski@icloud.com
                 </a>
               </p>
             </div>

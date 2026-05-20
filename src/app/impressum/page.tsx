@@ -27,7 +27,7 @@ export default function ImpressumPage() {
             <div>
               <h2 className="text-2xl font-bold mb-4">Kontakt</h2>
               <div className="text-neutral-400 space-y-2 leading-relaxed">
-                <p>Email: jeremy@neecratch.com</p>
+                <p>Email: jeremylesniewski@icloud.com</p>
               </div>
             </div>
 

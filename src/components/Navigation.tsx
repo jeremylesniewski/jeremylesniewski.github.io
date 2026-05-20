@@ -22,7 +22,6 @@ export default function Navigation() {
     { label: 'Tools', href: '#tools' },
     { label: 'About', href: '#about' },
     { label: 'Booking', href: '#contact' },
-
   ];
 
   return (

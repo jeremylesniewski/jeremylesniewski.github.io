@@ -160,8 +160,7 @@ export default function Contact() {
                   <option>Mixing</option>
                   <option>Mastering</option>
                   <option>Music Production</option>
-                  <option>Custom Bands / Projects</option>
-                  <option>VST / Sound Tools</option>
+                  <option>On-Site Recording</option>
                 </select>
               </div>
 
